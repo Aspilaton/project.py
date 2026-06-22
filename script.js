@@ -136,7 +136,7 @@ function loop() {
 
 // --- TYPEWRITER & GIFT & MUSIC ---
 
-const text = "seni bütün benliğim ile sevmeye devam edeceğim narinim";
+const text = "Seni seviyorum Azram";
 const typewriterEl = document.getElementById("typewriter");
 const giftContainer = document.querySelector(".gift-container");
 const gift = document.getElementById("gift");
