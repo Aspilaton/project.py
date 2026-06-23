@@ -43,7 +43,7 @@ function loop() {
 const acilisMetni = "Seni seviyorum Azram";
 
 // Video oynarken yukarıda yazacak olan mühimmat
-const videoMetni = "Dünyada tam 8 milyar insan var...\nSeninle aynı dönemde yaşama ihtimalimiz %6.8,\nbu milyarlarca insan arasından birbirimizle karşılaşma ihtimalimiz ise sadece %0.0000000125...\nVe biz bu imkansızı yaşadık.\nGülüşünü ve gozlerini çok seviyorum.\n(site adina bak DKKDKDKDKD)";
+const videoMetni = "Dünyada tam 8 milyar insan var...\nSeninle aynı dönemde yaşama ihtimalimiz %6.8,\nbu milyarlarca insan arasından birbirimizle karşılaşma ihtimalimiz ise sadece %0.0000000125...\nVe biz bu imkansızı yaşadık.\nGülüşünü ve gozlerini çok seviyorum.\n(site adina bak bildirim cubugnu kaydirarak DKKDKDKDKD)";
 
 const sonSoz = "İyi ki benimsin";
 
