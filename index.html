@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hediye Korgeneral</title>
+  <title>Operasyon Azra</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="text" id="typewriter"></div>
+  <div class="text" id="ilk-yazi"></div>
 
-  <div class="gift-container">
+  <video id="gizli-video" src="video.mp4" playsinline></video>
+
+  <div class="text" id="video-yazi"></div>
+
+  <div class="text" id="orta-soz" style="display: none;">Buraya o zifiri karanlıkta çıkacak özel sözü yaz Korgeneralım</div>
+
+  <div class="gift-container" id="kutu-merkezi" style="display: none;">
     <img src="gift.png" alt="Hediye Kutusu" id="gift" />
   </div>
 
-  <audio id="music" src="sarki.mp3" autoplay loop></audio>
+  <audio id="music" src="sarki.mp3" loop></audio>
 
   <canvas id="heart"></canvas>
 
