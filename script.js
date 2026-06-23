@@ -1,4 +1,4 @@
-// --- KALP ANİMASYONU MOTORU (DOKUNMA) ---
+// --- KALP ANİMASYONU MOTORU ---
 window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) { window.setTimeout(callback, 1000 / 60); };
 const canvas = document.getElementById("heart");
 const ctx = canvas.getContext("2d");
@@ -38,11 +38,11 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-// --- TACTICAL TEXT & TIMING MANAGEMENT ---
+// --- OPERASYON ZAMANLAYICI BEYİN ---
 
 const acilisMetni = "Seni seviyorum Azram";
 
-// Video oynarken yukarıda yazacak olan mühimmat (\n olan yerler alt satıra atlatır)
+// Video oynarken yukarıda yazacak olan mühimmat
 const videoMetni = "Dünyada tam 8 milyar insan var...\nSeninle aynı dönemde yaşama ihtimalim %6.8,\nbu milyarlarca insan arasından seninle karşılaşma ihtimalim ise sadece %0.0000000125...\nVe ben bu imkansızı yaşadım.\nGülüşünü çok seviyorum.";
 
 const sonSoz = "İyi ki benimsin";
@@ -87,42 +87,48 @@ function ilkDaktilo() {
   }
 }
 
-// 2. AŞAMA: Video Üstü Daktilosu (Alt satır destekli)
+// 2. AŞAMA: Video Üstü Daktilosu
 function videoDaktilo() {
   if (idx2 < videoMetni.length) {
     if (videoMetni.charAt(idx2) === '\n') {
-      videoYaziEl.innerHTML += "<br>"; // Satır atlama komutu
+      videoYaziEl.innerHTML += "<br>";
     } else {
       videoYaziEl.innerHTML += videoMetni.charAt(idx2);
     }
     idx2++;
-    setTimeout(videoDaktilo, 70); // Video akarken yazılar biraz daha seri aksın
+    setTimeout(videoDaktilo, 70);
   }
 }
 
-// Pimi Çek: Hediyeye basınca video başlar
+// Pimi Çek: Hediyeye basınca hem video hem müzik AYNI ANDA cepheye sürülüyor!
 giftImg.addEventListener("click", () => {
-  hediyeKutusu.style.display = "none";
-  videoObj.style.display = "block";
-  videoObj.play().catch(e => console.log("Video başlatılamadı:", e));
-  videoDaktilo();
+  hediyeKutusu.style.display = "none"; // Kutuyu imha et
+  
+  videoObj.style.display = "block"; // Videoyu ekrana getir
+  videoObj.play().catch(e => console.log("Video mermisi sıkıştı:", e));
+  
+  // Şarkı lo! Tam burada devreye giriyor, video dönene kadar arkada gürleyecek
+  music.play().catch(e => console.log("Müzik taarruzu engellendi:", e));
+  
+  videoDaktilo(); // Yazılar üstten akmaya başlasın
 });
 
-// 3. AŞAMA: Video Bitişi (Siyah Ekran, Vurucu Söz ve Kalp Taarruzu)
+// 3. AŞAMA: Video Bitişi (Siyah Ekran, Bekleme Süresi ve Kalpler)
 videoObj.addEventListener("ended", () => {
-  videoObj.style.display = "none";
-  videoYaziEl.style.display = "none";
+  videoObj.style.display = "none"; // Görüntüyü kes
+  videoYaziEl.style.display = "none"; // Üstteki yazıyı temizle
   
-  // Zifiri karanlıkta o son sözü yazıyoruz
+  // Ekran zifiri karanlıkken o son darbe vuruluyor
   ortaSozEl.innerHTML = sonSoz;
   ortaSozEl.style.display = "block";
   
-  // 4 saniye boyunca ekranda "İyi ki benimsin" yazısı kalacak, okumaya süre tanıyoruz
+  // Şarkı burada durmuyor, arkada akmaya devam ediyor komutanım!
+  
+  // "İyi ki benimsin" yazısı ekranda 4 saniye boyunca çakılı kalacak
   setTimeout(() => {
-    ortaSozEl.style.display = "none"; // Sözü kapat
+    ortaSozEl.style.display = "none"; // Yazıyı kaldır
     
-    // Ve asıl büyük taarruz: Müzik ve Kalpler!
-    music.play().catch(e => console.log("Müzik çalınamadı:", e));
+    // Ve nihai taarruz: Kalpler sahaya iniyor!
     animationRunning = true;
     canvas.style.display = "block";
     loop();
