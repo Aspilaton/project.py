@@ -24,11 +24,11 @@ body {
 }
 
 #video-yazi {
-  top: 15%; /* Ne çok yukarıda ne ortada, videoyu engellemeyecek taktik konum */
+  top: 15%; 
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  text-shadow: 2px 2px 8px #000000; /* Video arkasında harfler kabak gibi okunsun diye gölge */
+  text-shadow: 2px 2px 8px #000000; 
 }
 
 #orta-soz {
@@ -76,4 +76,61 @@ body {
 
 audio {
   display: none;
+}
+
+/* --- SAYAC OPERASYONU TASARIMI --- */
+#sayac-karargahi {
+  position: absolute;
+  top: 10%; 
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 15px;
+  z-index: 50; 
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.8);
+  animation: sizmaHarekati 2s ease-in-out;
+}
+
+.sayac-kutu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+}
+
+.sayac-kutu span {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace; 
+}
+
+.sayac-kutu .etiket {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-top: 3px;
+}
+
+.sonsuzluk {
+  font-size: 55px;
+  color: #ff3366;
+  margin-left: 10px;
+  text-shadow: 0 0 20px #ff3366;
+  animation: kalpAtisi 1.5s infinite; 
+}
+
+@keyframes sizmaHarekati { 
+  from { opacity: 0; transform: translate(-50%, -20px); } 
+  to { opacity: 1; transform: translate(-50%, 0); } 
+}
+
+@keyframes kalpAtisi { 
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.15); } 
+  100% { transform: scale(1); } 
 }

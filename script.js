@@ -42,7 +42,6 @@ function loop() {
 
 const acilisMetni = "Seni seviyorum Azram";
 
-// Video oynarken yukarıda yazacak olan mühimmat
 const videoMetni = "Dünyada tam 8 milyar insan var...\nSeninle aynı dönemde yaşama ihtimalimiz %6.8,\nbu milyarlarca insan arasından birbirimizle karşılaşma ihtimalimiz ise sadece %0.0000000125...\nVe biz bu imkansızı yaşadık.\nGülüşünü ve gozlerini çok seviyorum.\n(site adina bak bildirim cubugnu kaydirarak DKKDKDKDKD)";
 
 const sonSoz = "İyi ki benimsin";
@@ -58,7 +57,6 @@ const music = document.getElementById("music");
 let idx1 = 0;
 let idx2 = 0;
 
-// Yazıyı yumuşakça kaybetme fonksiyonu
 function fadeOut(element, callback) {
   let op = 1;
   const timer = setInterval(() => {
@@ -72,7 +70,6 @@ function fadeOut(element, callback) {
   }, 50);
 }
 
-// 1. AŞAMA: Açılış Daktilosu
 function ilkDaktilo() {
   if (idx1 < acilisMetni.length) {
     ilkYaziEl.innerHTML += acilisMetni.charAt(idx1);
@@ -87,7 +84,6 @@ function ilkDaktilo() {
   }
 }
 
-// 2. AŞAMA: Video Üstü Daktilosu (SERİ ATIŞ MODU - Hızlandırıldı)
 function videoDaktilo() {
   if (idx2 < videoMetni.length) {
     if (videoMetni.charAt(idx2) === '\n') {
@@ -96,11 +92,10 @@ function videoDaktilo() {
       videoYaziEl.innerHTML += videoMetni.charAt(idx2);
     }
     idx2++;
-    setTimeout(videoDaktilo, 45); // Gecikme süresi 70ms'den 30ms'ye düşürüldü! Yazılar artık fişek gibi akacak.
+    setTimeout(videoDaktilo, 45); 
   }
 }
 
-// Pimi Çek: Hediyeye basınca hem video hem müzik AYNI ANDA başlar
 giftImg.addEventListener("click", () => {
   hediyeKutusu.style.display = "none"; 
   videoObj.style.display = "block"; 
@@ -109,7 +104,6 @@ giftImg.addEventListener("click", () => {
   videoDaktilo(); 
 });
 
-// 3. AŞAMA: Video Bitişi (Siyah Ekran, Bekleme Süresi ve Kalpler)
 videoObj.addEventListener("ended", () => {
   videoObj.style.display = "none"; 
   videoYaziEl.style.display = "none"; 
@@ -117,16 +111,38 @@ videoObj.addEventListener("ended", () => {
   ortaSozEl.innerHTML = sonSoz;
   ortaSozEl.style.display = "block";
   
-  // "İyi ki benimsin" yazısı ekranda 4 saniye kalır
   setTimeout(() => {
     ortaSozEl.style.display = "none"; 
     
-    // Nihai taarruz: Kalpler sahada!
     animationRunning = true;
     canvas.style.display = "block";
     loop();
+
+    // SAYAÇ OPERASYONU BAŞLIYOR
+    const sayacKarargahi = document.getElementById("sayac-karargahi");
+    sayacKarargahi.style.display = "flex"; 
+
+    const baslangicTarihi = new Date("2026-06-20T00:00:00").getTime();
+
+    function atisiGuncelle() {
+      const simdi = new Date().getTime();
+      const fark = simdi - baslangicTarihi;
+
+      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+      document.getElementById("gun").innerText = gun.toString().padStart(2, '0');
+      document.getElementById("saat").innerText = saat.toString().padStart(2, '0');
+      document.getElementById("dakika").innerText = dakika.toString().padStart(2, '0');
+      document.getElementById("saniye").innerText = saniye.toString().padStart(2, '0');
+    }
+
+    atisiGuncelle();
+    setInterval(atisiGuncelle, 1000);
+
   }, 4000); 
 });
 
-// Operasyon Başlıyor
 ilkDaktilo();
